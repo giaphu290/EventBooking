@@ -1,0 +1,46 @@
+﻿using EventBooking.Application.Common.Constants;
+using EventBooking.Application.Features.Auth.RoleManage.Commands;
+using EventBooking.Domain.BaseException;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+    
+namespace EventBooking.Application.Features.Auth.RoleManage.Handlers
+{
+    public class DeleteRoleHandler : IRequestHandler<DeleteRoleCommand, bool>
+    {
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public DeleteRoleHandler(RoleManager<IdentityRole> roleManager)
+        {
+            _roleManager = roleManager;
+        }
+
+        public async Task<bool> Handle(DeleteRoleCommand request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var role = await _roleManager.FindByNameAsync(request.Name.ToLower());
+                if (role == null)
+                {
+                    return false;
+                }
+                var result = await _roleManager.DeleteAsync(role);
+                return result.Succeeded;
+
+            }
+            catch (ErrorException ex)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorException(StatusCodes.Status500InternalServerError, ResponseCodeConstants.INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi không mong muốn khi lưu.");
+            }
+        }
+    }
+}
