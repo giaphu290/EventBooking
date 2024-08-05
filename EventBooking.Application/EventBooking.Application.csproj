@@ -18,12 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Behaviors\" />
-    <Folder Include="Common\Mapping\" />
-    <Folder Include="Features\Auth\UserManage\" />
-    <Folder Include="Features\Auth\UserRoleManage\Handlers\" />
-    <Folder Include="Features\Auth\UserRoleManage\Model\" />
-    <Folder Include="Features\Auth\UserRoleManage\Queries\" />
+    <Folder Include="Features\Auth\UserManage\Queries\" />
   </ItemGroup>
 
 </Project>

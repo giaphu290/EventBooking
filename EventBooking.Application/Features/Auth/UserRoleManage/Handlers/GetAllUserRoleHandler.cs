@@ -1,6 +1,6 @@
 ﻿using EventBooking.Application.Common.Constants;
-using EventBooking.Application.Features.Auth.RoleManage.Models;
-using EventBooking.Application.Features.Auth.RoleManage.Queries;
+using EventBooking.Application.Features.Auth.UserRoleManage.Model;
+using EventBooking.Application.Features.Auth.UserRoleManage.Queries;
 using EventBooking.Domain.BaseException;
 using EventBooking.Domain.Entities;
 using MediatR;
@@ -12,9 +12,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBooking.Application.Features.Auth.RoleManage.Handlers
+namespace EventBooking.Application.Features.Auth.UserRoleManage.Handlers
 {
-    public class GetAllUserRoleHandler : IRequestHandler<GetAllUserRoleQuery, List<UserRoleResponse>>
+    public class GetAllUserRoleHandler : IRequestHandler<GetAllUserRoleQuery, IEnumerable<UserRoleResponse>>
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -24,12 +24,12 @@ namespace EventBooking.Application.Features.Auth.RoleManage.Handlers
             _roleManager = roleManager;
         }
 
-        public async Task<List<UserRoleResponse>> Handle(GetAllUserRoleQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UserRoleResponse>> Handle(GetAllUserRoleQuery request, CancellationToken cancellationToken)
         {
             var allUserRoles = new List<UserRoleResponse>();
             try
             {
-               
+
                 var users = _userManager.Users.ToList();
                 foreach (var user in users)
                 {
@@ -47,7 +47,7 @@ namespace EventBooking.Application.Features.Auth.RoleManage.Handlers
             }
             catch (ErrorException ex)
             {
-                throw; 
+                throw;
             }
             catch (Exception ex)
             {

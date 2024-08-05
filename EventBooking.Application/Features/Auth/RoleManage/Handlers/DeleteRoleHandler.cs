@@ -27,7 +27,8 @@ namespace EventBooking.Application.Features.Auth.RoleManage.Handlers
                 var role = await _roleManager.FindByNameAsync(request.Name.ToLower());
                 if (role == null)
                 {
-                    return false;
+                    throw new ErrorException(StatusCodes.Status409Conflict, ResponseCodeConstants.BADREQUEST, "Vai trò không tồn tại.");
+
                 }
                 var result = await _roleManager.DeleteAsync(role);
                 return result.Succeeded;

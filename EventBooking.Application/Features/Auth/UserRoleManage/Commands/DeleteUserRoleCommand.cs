@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.Auth.UserRoleManage.Commands
 {
-    public class AddUserToRoleCommand : IRequest<bool>
+    public class DeleteUserRoleCommand : IRequest<bool>
     {
         public string UserId { get; set; }
-        public string RoleName { get; set; }
+        public string RoleId { get; set; }
 
-        public AddUserToRoleCommand(string userId, string roleName)
+        public DeleteUserRoleCommand(string userId, string roleId)
         {
             UserId = userId;
-            RoleName = roleName;
+            RoleId = roleId;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBooking.Application.Features.Auth.RoleManage.Models
+namespace EventBooking.Application.Features.Auth.UserRoleManage.Model
 {
     public class UserRoleResponse
     {
