@@ -4,6 +4,7 @@ using EventBooking.Application.Common.Services.Interfaces;
 using EventBooking.Application.Features.Auth.RoleManage.Commands;
 using EventBooking.Application.Features.Auth.RoleManage.Models;
 using EventBooking.Application.Features.Auth.RoleManage.Queries;
+using EventBooking.Application.Features.Auth.UserRoleManage.Commands;
 using EventBooking.Application.Features.Auth.UserRoleManage.Model;
 using EventBooking.Application.Features.Auth.UserRoleManage.Queries;
 using Microsoft.AspNetCore.Identity;
@@ -62,6 +63,21 @@ namespace EventBooking.API.Controllers.Authentication
                 code: ResponseCodeConstants.SUCCESS,
                 data: result));
         }
+
+        /// <summary>
+        /// Thêm người dùng vào vai trò (role).
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPost("add-user-to-role")]
+        public async Task<IActionResult> AddUserToRole([FromBody] AddUserToRoleCommand command)
+        {
+            var result = await _mediatorService.Send(command);
+            return Ok(new BaseResponseModel<bool>(
+                statusCode: StatusCodes.Status200OK,
+                code: ResponseCodeConstants.SUCCESS,
+                data: result));
+        }
         /// <summary>
         /// Xóa vai trò (role).
         /// </summary>
@@ -100,7 +116,7 @@ namespace EventBooking.API.Controllers.Authentication
         {
             var query = new GetUserRoleByUserIdQuery { UserId = userId };
             var result = await _mediatorService.Send(query);
-            return Ok(new BaseResponseModel<IEnumerable<string>>(
+            return Ok(new BaseResponseModel(
                 statusCode: StatusCodes.Status200OK,
                 code: ResponseCodeConstants.SUCCESS,
                 data: result));
@@ -112,11 +128,11 @@ namespace EventBooking.API.Controllers.Authentication
         /// <param name="roleId"></param>
         /// <returns></returns>
         [HttpGet("get-user-role-by-roleId/{roleId}")]
-        public async Task<ActionResult<IEnumerable<IdentityUserRole<string>>>> GetByRoleId(string roleId)
+        public async Task<ActionResult<IEnumerable<string>>> GetByRoleId(string roleId)
         {
             var query = new GetUserRoleByRoleIdQuery { RoleId = roleId };
             var result = await _mediatorService.Send(query);
-            return Ok(new BaseResponseModel<IEnumerable<string>>(
+            return Ok(new BaseResponseModel(
                 statusCode: StatusCodes.Status200OK,
                 code: ResponseCodeConstants.SUCCESS,
                 data: result));

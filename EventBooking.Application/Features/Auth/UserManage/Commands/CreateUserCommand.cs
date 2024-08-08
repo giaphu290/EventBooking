@@ -15,7 +15,7 @@ namespace EventBooking.Application.Features.Auth.UserManage.Commands
     {
         [Required(ErrorMessage = "Họ và Tên không được bỏ trống!")]
         [MinLength(2, ErrorMessage = "Họ và Tên phải có ít nhất 2 ký tự.")]
-        public required string HoVaTen { get; set; }
+        public required string Name { get; set; }
 
         [Required(ErrorMessage = "Email không được bỏ trống!")]
         [EmailAddress(ErrorMessage = "Sai định dạng Email.")]
@@ -28,8 +28,8 @@ namespace EventBooking.Application.Features.Auth.UserManage.Commands
         [Required(ErrorMessage = "Mật khẩu không được bỏ trống!")]
         [MinLength(8, ErrorMessage = "Mật khẩu phải có ít nhất 8 ký tự.")]
         [MaxLength(20, ErrorMessage = "Mật khẩu không được vượt quá 20 ký tự.")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$",
-            ErrorMessage = "Mật khẩu phải chứa ít nhất 1 ký tự in hoa, 1 ký tự thường, 1 ký tự số và 1 ký tự đặc biệt.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,20}$",
+         ErrorMessage = "Mật khẩu phải chứa ít nhất 1 ký tự in hoa, 1 ký tự thường, và 1 ký tự số.")]
         public required string Password { get; set; }
 
         [Required(ErrorMessage = "Số điện thoại không được bỏ trống!")]

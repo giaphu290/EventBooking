@@ -1,6 +1,7 @@
 ﻿using EventBooking.Application.Common.Persistences.IRepositories;
 using EventBooking.Application.Common.Services.Interfaces;
 using EventBooking.Domain.Entities;
+using EventBooking.Domain.Private;
 using EventBooking.Infrastructure.Persistences.DBContext;
 using EventBooking.Infrastructure.Persistences.Repositories;
 using EventBooking.Infrastructure.Services;
@@ -19,28 +20,27 @@ namespace EventBooking.Infrastructure
     {
         public static IServiceCollection ConfigureInfrastructureService(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddIdentityCore<User>()
-            //    .AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            
-           services.AddIdentityCore<User>(options =>
-        {
-            options.Password.RequireDigit = true;
-            options.Password.RequireLowercase = true;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = true;
-            options.Password.RequiredLength = 6;
-            options.Password.RequiredUniqueChars = 1;
-        })
-        .AddRoles<IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); // Đăng ký UnitOfWork để quản lý các phiên làm việc với cơ sở dữ liệu
+            services.AddIdentityCore<User>()
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>(); // Đăng ký Identity và Entity Framework
 
-            //services.AddScoped<IUserContextService, UserContextService>();
-            services.AddScoped<ITimeService, TimeService>();
-            //services.AddTransient<IFileService, FileService>();
+            services.AddIdentityCore<User>(options =>
+            {
+                options.Password.RequireDigit = true; // Mật khẩu phải chứa ít nhất một ký tự số
+                options.Password.RequireLowercase = true; // Mật khẩu phải chứa ít nhất một ký tự chữ thường
+                options.Password.RequireNonAlphanumeric = false; // Không yêu cầu ký tự không phải là chữ hoặc số
+                options.Password.RequireUppercase = true; // Mật khẩu phải chứa ít nhất một ký tự chữ hoa
+                options.Password.RequiredLength = 6; // Độ dài tối thiểu của mật khẩu
+                options.Password.RequiredUniqueChars = 1; // Số lượng ký tự khác nhau tối thiểu trong mật khẩu
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+            PasswordGenerator.Initialize(configuration);
+                     services.AddScoped<IUserContextService, UserContextService>();
+                     services.AddScoped<ITimeService, TimeService>();
+                     services.AddTransient<IFileService, FileService>();
             //services.AddScoped<IChatService, ChatService>();
-            services.AddScoped<IMediatorService, MediatorService>();
+                     services.AddScoped<IMediatorService, MediatorService>();
 
             //Quartz
             //services.AddQuartz(options =>

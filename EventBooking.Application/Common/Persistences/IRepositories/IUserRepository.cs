@@ -10,6 +10,10 @@ namespace EventBooking.Application.Common.Persistences.IRepositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-
+        Task<IEnumerable<User>> GetUsersByHoVaTenAsync(string hoVaTen);
+        Task<User> GetByIdAsync(string id);
+        Task UpdateAsync(User user);
+        Task<User> GetUserByRefreshTokenAsync(string refreshToken);
+        Task UpdateUserAsync(User user);
     }
 }

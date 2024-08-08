@@ -18,6 +18,12 @@ namespace EventBooking.Application.Common.Constants
         public const string UNAUTHORIZED = "Unauthorized!";
         public const string BADREQUEST = "Bad request!";
         public const string ERROR = "Error!";
+        public const string UNAUTHENTICATED = "Unauthenticated!";
+        public const string TOKEN_EXPIRED = "The token has expired.";
+        public const string TOKEN_INVALID = "The token is invalid.";
+        public const string UNKNOWN = "Oops! Something went wrong, please try again later.";
+        public const string NOT_UNIQUE = "The resource already exists, please try another.";
+        public const string VALIDATED = "Validated.";
     }
     public static class ErrorMessages
     {

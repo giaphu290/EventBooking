@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Auth\PasswordManage\Models\" />
+    <Folder Include="Features\Auth\PasswordManage\Queries\" />
     <Folder Include="Features\Auth\UserManage\Queries\" />
   </ItemGroup>
 

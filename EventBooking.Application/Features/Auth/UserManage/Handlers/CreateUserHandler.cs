@@ -37,7 +37,6 @@ namespace EventBooking.Application.Features.Auth.UserManage.Handlers
 
                 var roleName = request.RoleName.Trim();
                 IdentityRole? role = await _roleManager.FindByNameAsync(roleName);
-
                 if (role == null)
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Vai trò không tồn tại.");
 

@@ -25,8 +25,6 @@ namespace EventBooking.Application.Features.Auth.UserManage.Commands
 
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Số điện thoại cần có 10 chữ số.")]
         public string? PhoneNumber { get; set; }
-
-        [Required(ErrorMessage = "Tên Role không được bỏ trống!")]
         [JsonIgnore]
         public string? RoleName { get; set; }
     }

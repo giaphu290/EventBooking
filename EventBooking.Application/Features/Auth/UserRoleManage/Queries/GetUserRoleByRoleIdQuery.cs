@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EventBooking.Application.Features.Auth.UserRoleManage.Model;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;

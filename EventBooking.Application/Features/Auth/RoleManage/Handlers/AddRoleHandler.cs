@@ -20,7 +20,7 @@ namespace EventBooking.Application.Features.Auth.RoleManage.Handlers
         {
             try
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole(request.Name.ToLower()));
+                var result = await _roleManager.CreateAsync(new IdentityRole(request.Name!.ToLower()));
                 if (!result.Succeeded)
                 {
                     throw new ErrorException(StatusCodes.Status409Conflict, ResponseCodeConstants.BADREQUEST, "Vai trò đã tồn tại.");

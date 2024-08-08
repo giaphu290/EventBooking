@@ -6,7 +6,7 @@ namespace EventBooking.Domain.Entities
     public class User : IdentityUser, IBaseEntity
     {
         public string Name { get; set; }
-        public string Bio { get; set; }
+        public string? Bio { get; set; }
         public string? ResetToken { get; set; }
         public DateTimeOffset? ResetTokenExpires { get; set; }
         public string? VerificationToken { get; set; }
@@ -14,7 +14,7 @@ namespace EventBooking.Domain.Entities
         public bool IsConfirmed { get; set; }
         public string? ImagePath { get; set; }
         public string? EmailCode { get; set; }
-        public ICollection<Event> Events { get; set; }
+        public ICollection<Event> Events { get; set; } 
         public ICollection<GroupUser> GroupUsers { get; set; }
         public ICollection<EventInvitation> EventInvitations { get; set; }
         public ICollection<EventTicket> EventTickets { get; set; }

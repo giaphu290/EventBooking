@@ -46,7 +46,7 @@ namespace EventBooking.Domain.BaseException
 
         public ErrorDetail ErrorDetail { get; }
 
-        public ErrorException(int statusCode, string errorCode, string message = null)
+        public ErrorException(int statusCode, string errorCode, string message = null!)
         {
             StatusCode = statusCode;
             ErrorDetail = new ErrorDetail
