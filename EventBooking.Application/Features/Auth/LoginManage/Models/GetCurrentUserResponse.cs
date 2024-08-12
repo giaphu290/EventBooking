@@ -8,7 +8,7 @@ namespace EventBooking.Application.Features.Auth.LoginManage.Models
 {
     public class GetCurrentUserResponse
     {
-        public string HoVaTen { get; set; }
+        public string Name { get; set; }
         public string Bio {  get; set; }
         public string ImagePath { get; set; }
         public string PhoneNumber { get; set; }
