@@ -44,8 +44,7 @@ namespace EventBooking.Application
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Thắc mắc
             services.AddTransient<IRequestHandler<LoginCommand, LoginResponse>, LoginHandler>();
-            //services.AddTransient<IRequestHandler<RefreshTokenCommand, TokenResponse>, RefreshTokenHandler>();
-            //services.AddTransient<IRequestHandler<ResetTokenCommand, ResetTokenResponse>, ResetTokenCommandHandler>();
+            services.AddTransient<IRequestHandler<RefreshTokenCommand, RefreshTokenResponse>, RefreshTokenHandler>();
             //services.AddTransient<IRequestHandler<SendMessageCommand, bool>, SendMessageHandler>();
 
             //services.AddSignalR();

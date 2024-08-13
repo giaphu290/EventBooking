@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using EventBooking.Application.Features.Auth.LoginManage.Queries;
 using EventBooking.Application.Features.Auth.LoginManage.Commands;
 using EventBooking.Application.Features.Auth.LoginManage.Models;
+using EventBooking.Application.Features.Auth.PasswordManage.Commands;
 
 namespace EventBooking.API.Controllers.Authentication
 {
@@ -90,60 +91,60 @@ namespace EventBooking.API.Controllers.Authentication
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //[HttpPost("refresh-token")]
-        //public async Task<IActionResult> RefreshToken([FromForm] RefreshTokenRequest request)
-        //{
-        //    var response = await _mediatorService.Send(new RefreshTokenCommand(request));
-        //    return Ok(new BaseResponseModel<TokenResponse>(
-        //        StatusCodes.Status201Created,
-        //        ResponseCodeConstants.SUCCESS,
-        //        response));
-        //}
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromForm] RefreshTokenCommand request)
+        {
+            var response = await _mediatorService.Send(request);
+            return Ok(new BaseResponseModel<RefreshTokenResponse>(
+                StatusCodes.Status201Created,
+                ResponseCodeConstants.SUCCESS,
+                response));
+        }
 
         /// <summary>
         /// Quên mật khẩu.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //[HttpPost("forgot-password")]
-        //public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
-        //{
-        //    var response = await _mediatorService.Send(new ForgotPasswordCommand(request.Email));
-        //    return Ok(new BaseResponseModel<Unit>(
-        //        StatusCodes.Status201Created,
-        //        ResponseCodeConstants.SUCCESS,
-        //        response));
-        //}
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordCommand request)
+        {
+            var response = await _mediatorService.Send(request);
+            return Ok(new BaseResponseModel<Unit>(
+                StatusCodes.Status201Created,
+                ResponseCodeConstants.SUCCESS,
+                response));
+        }
 
         /// <summary>
         /// Kiểm tra mã code hợp lệ để lấy lại mật khẩu.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //[HttpPost("check-valid-code")]
-        //public async Task<IActionResult> CheckValidCode([FromBody] CheckValidCode request)
-        //{
-        //    var isValid = await _mediatorService.Send(new VerifyCodeCommand(request.Email, request.Code));
-        //    return Ok(new BaseResponseModel<bool>(
-        //        StatusCodes.Status201Created,
-        //        ResponseCodeConstants.SUCCESS,
-        //        isValid));
-        //}
+        [HttpPost("check-valid-code")]
+        public async Task<IActionResult> CheckValidCode([FromBody] VerifyCodeCommand request)
+        {
+            var isValid = await _mediatorService.Send(request);
+            return Ok(new BaseResponseModel<bool>(
+                StatusCodes.Status201Created,
+                ResponseCodeConstants.SUCCESS,
+                isValid));
+        }
 
         /// <summary>
         /// Đặt lại mật khẩu.
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        //[HttpPost("reset-password")]
-        //public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
-        //{
-        //    var response = await _mediatorService.Send(new ResetPasswordCommand(request.Email, request.NewPassword, request.ConfirmPassword));
-        //    return Ok(new BaseResponseModel<IdentityResult>(
-        //        StatusCodes.Status201Created,
-        //        ResponseCodeConstants.SUCCESS,
-        //        response));
-        //}
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand request)
+        {
+            var response = await _mediatorService.Send(request);
+            return Ok(new BaseResponseModel<IdentityResult>(
+                StatusCodes.Status201Created,
+                ResponseCodeConstants.SUCCESS,
+                response));
+        }
     }
 }
 

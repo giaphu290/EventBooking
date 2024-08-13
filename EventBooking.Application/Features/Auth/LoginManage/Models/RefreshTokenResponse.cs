@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.Auth.LoginManage.Models
 {
-    public class ErrorResponses
+    public class RefreshTokenResponse
     {
-
-        public bool Success { get; set; }
-        public string Errors { get; set; }
+        public string VerificationToken { get; set; }
+        public string RefreshToken { get; set; }
     }
 }
