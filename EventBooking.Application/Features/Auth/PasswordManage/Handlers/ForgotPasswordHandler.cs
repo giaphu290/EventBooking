@@ -29,8 +29,11 @@ namespace EventBooking.Application.Features.Auth.PasswordManage.Handlers
         {
             try
             {
-                var user = await _userManager.FindByEmailAsync(request.Email) ??
+                var user = await _userManager.FindByEmailAsync(request.Email);
+                if (user == null)
+                {
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy người dùng");
+                }
                 // Tạo mã xác thực
                 var code = new Random().Next(1000, 9999).ToString();
                 // Băm mã xác thực

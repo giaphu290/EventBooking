@@ -19,9 +19,9 @@ namespace EventBooking.Infrastructure.Persistences.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<User> GetUserByRefreshTokenAsync(string refreshToken)
+        public async Task<User> GetUserByRefreshTokenAsync(string refreshToken)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Users.FirstOrDefaultAsync(u => u.ResetToken == refreshToken);
         }
 
         public async Task<IEnumerable<User>> GetUsersByHoVaTenAsync(string hoVaTen)

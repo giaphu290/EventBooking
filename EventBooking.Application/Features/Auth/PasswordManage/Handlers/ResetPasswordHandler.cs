@@ -37,21 +37,13 @@ namespace EventBooking.Application.Features.Auth.PasswordManage.Handlers
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "User not found");
                 }
 
-                
-                // var verificationResult = _userManager.PasswordHasher.VerifyHashedPassword(user, user.EmailCode, request.Code);
-                //if (verificationResult == PasswordVerificationResult.Failed)
-                //{
-                //    return IdentityResult.Failed(new IdentityError { Description = "Invalid token." });
-                //}
-                
-
                 // Tạo token đặt lại mật khẩu
                 var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
                 // Đặt lại mật khẩu
                 var result = await _userManager.ResetPasswordAsync(user, resetToken, request.NewPassword);
                 if (result.Succeeded)
                 {
-                    //user.EmailCode = null; 
+                    user.EmailCode = null;
                     await _userManager.UpdateAsync(user);
                     var selectedEmail = new List<string> { request.Email };
                     var time = _timeService.SystemTimeNow.ToString("yyyy-MM-dd HH:mm:ss");

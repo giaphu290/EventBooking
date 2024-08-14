@@ -32,6 +32,7 @@ namespace EventBooking.Infrastructure.Services
 
         public async Task<bool> SendEmailAsync(IEnumerable<string> toList, string subject, string body)
         {
+
             try
             {
                 // Tạo một đối tượng MimeMessage để xây dựng email

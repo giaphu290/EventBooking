@@ -21,6 +21,12 @@ namespace EventBooking.Infrastructure
         public static IServiceCollection ConfigureInfrastructureService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>(); // Đăng ký UnitOfWork để quản lý các phiên làm việc với cơ sở dữ liệu
+            services.AddScoped<IUserContextService, UserContextService>();
+            services.AddScoped<ITimeService, TimeService>();
+            services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IEmailService, EmailService>();
+            //services.AddScoped<IChatService, ChatService>();
+            services.AddScoped<IMediatorService, MediatorService>();
             services.AddIdentityCore<User>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>(); // Đăng ký Identity và Entity Framework
@@ -36,12 +42,7 @@ namespace EventBooking.Infrastructure
             })
             .AddEntityFrameworkStores<ApplicationDbContext>();
             PasswordGenerator.Initialize(configuration);
-                     services.AddScoped<IUserContextService, UserContextService>();
-                     services.AddScoped<ITimeService, TimeService>();
-                     services.AddTransient<IFileService, FileService>();
-                     services.AddTransient<IEmailService, EmailService>();
-            //services.AddScoped<IChatService, ChatService>();
-                     services.AddScoped<IMediatorService, MediatorService>();
+                   
 
             //Quartz
             //services.AddQuartz(options =>
