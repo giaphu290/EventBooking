@@ -201,17 +201,17 @@ namespace EventBooking.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RegistrationEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsPrivate = table.Column<bool>(type: "bit", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: true),
+                    HostId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastUpdatedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     DeletedTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -225,8 +225,8 @@ namespace EventBooking.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Event", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Event_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Event_AspNetUsers_HostId",
+                        column: x => x.HostId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -449,9 +449,9 @@ namespace EventBooking.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Event_UserId",
+                name: "IX_Event_HostId",
                 table: "Event",
-                column: "UserId");
+                column: "HostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EventInvitation_EventId",

@@ -54,7 +54,7 @@ namespace EventBooking.Application.Features.EventManagement.Handlers
                     existingEvent.LastUpdatedBy = currentUserId;
                     existingEvent.LastUpdatedTime = _timeService.SystemTimeNow;
                     await _unitOfWork.SaveChangeAsync();
-                    return _mapper.Map<CreateEventResponse>(request);
+                    return _mapper.Map<CreateEventResponse>(existingEvent);
 
                 }
                 var newEvent = _mapper.Map<Event>(request);

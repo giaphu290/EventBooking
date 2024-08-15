@@ -18,7 +18,7 @@ namespace EventBooking.API.Controllers.EventController
             _mediatorService = mediatorService;
         }
         [HttpPost("create")]
-        public async Task<IActionResult> CreateNhomZalo([FromBody] CreateEventCommand command)
+        public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand command)
         {
             var response = await _mediatorService.Send(command);
             return Ok(new BaseResponseModel<CreateEventResponse>

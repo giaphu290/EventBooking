@@ -16,10 +16,9 @@ namespace EventBooking.Infrastructure.Persistences.FluentAPI
         {
             builder.ToTable("Event");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Name).IsRequired().HasMaxLength(100);
-            builder.Property(e => e.Description).IsRequired();
-            builder.Property(e => e.Location).IsRequired();
-            builder.Property(e => e.Status).IsRequired();
+            builder.Property(e => e.Name).HasMaxLength(100);
+            builder.Property(e => e.Price)
+              .HasColumnType("decimal(18, 2)");
             builder
            .HasOne(ut => ut.User)
            .WithMany(u => u.Events)

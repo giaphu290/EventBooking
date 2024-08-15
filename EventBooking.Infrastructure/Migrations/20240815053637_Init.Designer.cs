@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventBooking.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240808110427_Init")]
+    [Migration("20240815053637_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -82,7 +82,7 @@ namespace EventBooking.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Capacity")
+                    b.Property<int?>("Capacity")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -99,11 +99,14 @@ namespace EventBooking.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("HostId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -130,8 +133,8 @@ namespace EventBooking.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<DateTime?>("RegistrationEndDate")
                         .HasColumnType("datetime2");
@@ -142,13 +145,9 @@ namespace EventBooking.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("HostId");
 
                     b.ToTable("Event", (string)null);
                 });
@@ -702,7 +701,7 @@ namespace EventBooking.Infrastructure.Migrations
                 {
                     b.HasOne("EventBooking.Domain.Entities.User", "User")
                         .WithMany("Events")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("HostId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

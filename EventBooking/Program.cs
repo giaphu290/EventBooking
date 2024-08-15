@@ -13,7 +13,8 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ApplicationDbContext>(p =>
-               p.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+               p.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
+
 builder.Services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
