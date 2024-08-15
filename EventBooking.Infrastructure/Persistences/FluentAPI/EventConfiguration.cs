@@ -23,7 +23,7 @@ namespace EventBooking.Infrastructure.Persistences.FluentAPI
             builder
            .HasOne(ut => ut.User)
            .WithMany(u => u.Events)
-           .HasForeignKey(ut => ut.UserId)
+           .HasForeignKey(ut => ut.HostId)
            .OnDelete(DeleteBehavior.NoAction);
         }
     }

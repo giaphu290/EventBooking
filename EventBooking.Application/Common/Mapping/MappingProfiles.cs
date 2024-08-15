@@ -3,6 +3,7 @@ using EventBooking.Application.Features.Auth.LoginManage.Models;
 using EventBooking.Application.Features.Auth.RoleManage.Models;
 using EventBooking.Application.Features.Auth.UserManage.Commands;
 using EventBooking.Application.Features.Auth.UserManage.Models;
+using EventBooking.Application.Features.EventManagement.Commands;
 using EventBooking.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -25,6 +26,11 @@ namespace EventBooking.Application.Common.Mapping
 
             // Role
             CreateMap<IdentityRole, RoleResponse>().ReverseMap();
+            // Event
+            CreateMap<Event, CreateEventCommand>().ReverseMap();
+            CreateMap<Event, CreateUserResponse>().ReverseMap();
+
+
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace EventBooking.API
 {
@@ -11,7 +12,12 @@ namespace EventBooking.API
     {
         public static IServiceCollection ConfigureApiServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers();
+            services.AddControllers()
+                // Chuyển mọi enum thành json
+                 .AddJsonOptions(options =>
+                 {
+                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                 });
             //services.AddScoped<IEmailService, EmailService>();
             services.ConfigCors();
             services.ConfigSwagger();

@@ -25,6 +25,7 @@ namespace EventBooking.Infrastructure
             services.AddScoped<ITimeService, TimeService>();
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddScoped<INormalizeVietnamese, NormalizeVietnameseService>();
             //services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IMediatorService, MediatorService>();
             services.AddIdentityCore<User>()
