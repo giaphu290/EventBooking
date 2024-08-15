@@ -22,7 +22,7 @@ namespace EventBooking.Application.Features.EventManagement.Models
         public string CreateBy { get; set; }
 
         public string LastUpdatedBy { get; set; }
-        public DateTime CreatedTime { get; set; }
+        public DateTimeOffset CreatedTime { get; set; }
 
         public DateTimeOffset LastUpdatedTime { get; set; }
         public string Errors { get; set; }

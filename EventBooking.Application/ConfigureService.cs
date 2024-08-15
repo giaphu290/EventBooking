@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Text;
+using FluentValidation;
 
 namespace EventBooking.Application
 {
@@ -21,11 +22,11 @@ namespace EventBooking.Application
         public static IServiceCollection ConfigureApplicationService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(typeof(MappingProfiles));
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationErrorBehaviour<,>));
-
             });
             //PasswordGenerator.Initialize(configuration);
             services.AddSingleton<TokenValidationParameters>(provider =>
