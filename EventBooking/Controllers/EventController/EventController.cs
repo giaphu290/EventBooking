@@ -16,13 +16,47 @@ namespace EventBooking.API.Controllers.EventController
         public EventController(IMediatorService mediatorService)
         {
             _mediatorService = mediatorService;
+          
         }
+        /// <summary>
+        /// Tạo mới sự kiện.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost("create")]
         public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand command)
         {
             var response = await _mediatorService.Send(command);
-            return Ok(new BaseResponseModel<CreateEventResponse>
+            return Ok(new BaseResponseModel<EventResponse>
                 (statusCode: StatusCodes.Status200OK,
+                code: ResponseCodeConstants.SUCCESS,
+                data: response));
+        }
+        /// <summary>
+        /// Cập nhật thông tin sự kiện.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateDuAn([FromBody] UpdateEventCommand command)
+        {
+            var response = await _mediatorService.Send(command);
+            return Ok(new BaseResponseModel<EventResponse>(
+                statusCode: StatusCodes.Status200OK,
+                code: ResponseCodeConstants.SUCCESS,
+                data: response));
+        }
+        /// <summary>
+        /// Xóa dự án.
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteDuAn([FromBody] DeleteEventCommand command)
+        {
+            bool response = await _mediatorService.Send(command);
+            return Ok(new BaseResponseModel(
+                statusCode: StatusCodes.Status200OK,
                 code: ResponseCodeConstants.SUCCESS,
                 data: response));
         }

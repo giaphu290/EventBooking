@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.EventManagement.Handlers
 {
-    public class CreateEventHandler : IRequestHandler<CreateEventCommand, CreateEventResponse>
+    public class CreateEventHandler : IRequestHandler<CreateEventCommand, EventResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -32,7 +32,7 @@ namespace EventBooking.Application.Features.EventManagement.Handlers
             _timeService = timeService;
         }
 
-        public async Task<CreateEventResponse> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<EventResponse> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
            
             try
@@ -54,7 +54,7 @@ namespace EventBooking.Application.Features.EventManagement.Handlers
                     existingEvent.LastUpdatedBy = currentUserId;
                     existingEvent.LastUpdatedTime = _timeService.SystemTimeNow;
                     await _unitOfWork.SaveChangeAsync();
-                    return _mapper.Map<CreateEventResponse>(existingEvent);
+                    return _mapper.Map<EventResponse>(existingEvent);
 
                 }
                 var newEvent = _mapper.Map<Event>(request);
@@ -66,7 +66,7 @@ namespace EventBooking.Application.Features.EventManagement.Handlers
                 newEvent.LastUpdatedTime = _timeService.SystemTimeNow;
                 newEvent = await _unitOfWork.EventRepository.AddAsync(newEvent);
                 await _unitOfWork.SaveChangeAsync();
-                return _mapper.Map<CreateEventResponse>(newEvent);
+                return _mapper.Map<EventResponse>(newEvent);
             }
             catch (ErrorException ex)
             {

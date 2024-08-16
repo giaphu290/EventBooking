@@ -39,7 +39,7 @@ namespace EventBooking.Application.Features.EventManagement.Commands
                 .WithMessage("Privacy status must be specified.");
         }
     }
-    public class CreateEventCommand : IRequest<CreateEventResponse>
+    public class CreateEventCommand : IRequest<EventResponse>
     {
         public string Name { get; set; }
         public string? Description { get; set; }

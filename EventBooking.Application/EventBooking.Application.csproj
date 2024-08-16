@@ -23,7 +23,6 @@
     <Folder Include="Features\Auth\PasswordManage\Models\" />
     <Folder Include="Features\Auth\PasswordManage\Queries\" />
     <Folder Include="Features\Auth\UserManage\Queries\" />
-    <Folder Include="Features\EventManagement\Queries\" />
     <Folder Include="Features\CommunicationManagement\" />
     <Folder Include="Features\GroupManagement\Commands\" />
     <Folder Include="Features\GroupManagement\Handlers\" />

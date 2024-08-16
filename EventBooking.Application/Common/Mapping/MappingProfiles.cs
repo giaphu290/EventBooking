@@ -29,7 +29,7 @@ namespace EventBooking.Application.Common.Mapping
             CreateMap<IdentityRole, RoleResponse>().ReverseMap();
             // Event
             CreateMap<Event, CreateEventCommand>().ReverseMap();
-            CreateMap<Event, CreateEventResponse>().ReverseMap();
+            CreateMap<Event, EventResponse>().ReverseMap();
 
 
         }

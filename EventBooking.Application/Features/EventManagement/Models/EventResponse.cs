@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.EventManagement.Models
 {
-    public class CreateEventResponse
+    public class EventResponse
     {
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
@@ -25,7 +25,8 @@ namespace EventBooking.Application.Features.EventManagement.Models
         public DateTimeOffset CreatedTime { get; set; }
 
         public DateTimeOffset LastUpdatedTime { get; set; }
-        public string Errors { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDelete { get; set; }
 
     }
 }
