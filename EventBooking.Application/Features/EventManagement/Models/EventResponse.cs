@@ -19,14 +19,10 @@ namespace EventBooking.Application.Features.EventManagement.Models
         public DateTime RegistrationEndDate { get; set; }
         public EventStatus Status { get; set; }
         public int Capacity { get; set; }
-        public string CreateBy { get; set; }
+        public string CreatedBy { get; set; }
 
         public string LastUpdatedBy { get; set; }
-        public DateTimeOffset CreatedTime { get; set; }
-
-        public DateTimeOffset LastUpdatedTime { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDelete { get; set; }
+        public string DeletedBy { get; set; }
 
     }
 }

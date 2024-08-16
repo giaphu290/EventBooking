@@ -30,6 +30,7 @@ namespace EventBooking.Application.Common.Mapping
             // Event
             CreateMap<Event, CreateEventCommand>().ReverseMap();
             CreateMap<Event, EventResponse>().ReverseMap();
+            CreateMap<Event, UpdateEventCommand>().ReverseMap();
 
 
         }
