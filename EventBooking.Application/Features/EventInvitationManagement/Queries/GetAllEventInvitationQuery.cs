@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.EventInvitationManagement.Queries
 {
-    internal class GetEventInvitationQuery
+    internal class GetAllEventInvitationQuery
     {
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBooking.Application.Features.PostManagement.Models
+namespace EventBooking.Application.Features.GroupUserManagement.Handlers
 {
-    internal class EventPostResponse
+    internal class GetGroupUserByIdHandler
     {
     }
 }

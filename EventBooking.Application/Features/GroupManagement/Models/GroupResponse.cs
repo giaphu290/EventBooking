@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.GroupManagement.Models
 {
-    internal class GroupResponse
+    public class GroupResponse
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

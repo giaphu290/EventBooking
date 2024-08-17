@@ -26,12 +26,13 @@ namespace EventBooking.Application.Features.EventManagement.Handlers
         private readonly ITimeService _timeService;
         private readonly UserManager<User> _userManager;
 
-        public UpdateEventHander(IUnitOfWork unitOfWork, IMapper mapper, IUserContextService userContextService, ITimeService timeService)
+        public UpdateEventHander(IUnitOfWork unitOfWork, IMapper mapper, IUserContextService userContextService, ITimeService timeService, UserManager<User> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userContextService = userContextService;
             _timeService = timeService;
+            _userManager = userManager;
         }
         public async Task<EventResponse> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {

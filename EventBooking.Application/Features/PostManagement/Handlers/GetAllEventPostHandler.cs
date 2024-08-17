@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBooking.Application.Features.PostManagement.Models
+namespace EventBooking.Application.Features.PostManagement.Handlers
 {
-    internal class EventPostResponse
+    public class GetAllEventPostHandler
     {
     }
 }
