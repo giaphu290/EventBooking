@@ -2,6 +2,7 @@
 using EventBooking.Domain.Entities;
 using EventBooking.Infrastructure.Persistences.DBContext;
 using EventBooking.Infrastructure.Persistences.Repositories.BaseRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ namespace EventBooking.Infrastructure.Persistences.Repositories
         public EventTicketRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             _context = dbContext; 
+        }
+
+        public async Task<IEnumerable<EventTicket>> GetEventsByEventIdAsync(int id)
+        {
+            return await _context.EventTickets.Where(a => a.EventId == id && a.IsDelete == false && a.IsActive == true).ToListAsync();
         }
     }
 }

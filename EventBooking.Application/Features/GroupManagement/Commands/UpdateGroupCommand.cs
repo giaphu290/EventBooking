@@ -20,9 +20,6 @@ namespace EventBooking.Application.Features.GroupManagement.Commands
              .WithMessage("Tên Group không được để trống.")
                .Length(2, 50)
                  .WithMessage("Tên Group không được quá 50 ký tự");
-            RuleFor(command => command.Description)
-          .NotEmpty()
-            .WithMessage("Mô tả Group không được để trống.");
 
 
         }

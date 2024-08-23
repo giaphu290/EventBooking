@@ -18,5 +18,19 @@ namespace EventBooking.Infrastructure.Persistences.Repositories
         {
             _context = dbContext;
         }
+
+        public async Task<IEnumerable<EventInvitation>> GetEventInvitationsByEventIdAsync(int eventId)
+        {
+            return await _context.EventInvitations.Where(a => a.EventId == eventId && a.IsActive == true && a.IsDelete == false).ToListAsync();
+
+
+        }
+
+        public async Task<IEnumerable<EventInvitation>> GetEventInvitationsByUserIdAsync(string userId)
+        {
+            return await _context.EventInvitations
+          .Where(t => t.UserId.Equals(userId) && t.IsActive == true && t.IsDelete == false)
+          .ToListAsync();
+        }
     }
 }

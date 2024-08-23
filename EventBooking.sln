@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.API", "EventBooking\EventBooking.API.csproj", "{820E5099-E218-4F69-B7FC-038F39D8C9CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.API", "EventBooking\EventBooking.API.csproj", "{820E5099-E218-4F69-B7FC-038F39D8C9CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Application", "EventBooking.Application\EventBooking.Application.csproj", "{F4674777-EC8E-4469-88BE-D94C67D4709A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.Application", "EventBooking.Application\EventBooking.Application.csproj", "{F4674777-EC8E-4469-88BE-D94C67D4709A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Domain", "EventBooking.Domain\EventBooking.Domain.csproj", "{FE874F97-A6E6-42B1-8A8F-7C296A8B9363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.Domain", "EventBooking.Domain\EventBooking.Domain.csproj", "{FE874F97-A6E6-42B1-8A8F-7C296A8B9363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooking.Infrastructure", "EventBooking.Infrastructure\EventBooking.Infrastructure.csproj", "{90F5D00B-E1A5-4B0C-BBF7-A33FEBF8209B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBooking.Infrastructure", "EventBooking.Infrastructure\EventBooking.Infrastructure.csproj", "{90F5D00B-E1A5-4B0C-BBF7-A33FEBF8209B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

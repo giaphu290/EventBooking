@@ -10,5 +10,7 @@ namespace EventBooking.Application.Common.Persistences.IRepositories
 {
     public interface IEventTicketRepository : IBaseRepository<EventTicket>
     {
+        Task<IEnumerable<EventTicket>> GetEventsByEventIdAsync(int id);
+
     }
 }

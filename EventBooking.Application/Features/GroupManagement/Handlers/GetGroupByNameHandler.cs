@@ -34,8 +34,8 @@ namespace EventBooking.Application.Features.GroupManagement.Handlers
             try
             {
                 string names = _normalizeVietnamese.NormalizeVietnamese(request.Name);
-                var groups = await _unitOfWork.EventRepository.GetEventsByNameAsync(names);
-                if (!groups.Any())
+                var groups = await _unitOfWork.GroupRepository.GetGroupsByNameAsync(names);
+                if (groups == null || !groups.Any())
                 {
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy sự kiện");
                 }

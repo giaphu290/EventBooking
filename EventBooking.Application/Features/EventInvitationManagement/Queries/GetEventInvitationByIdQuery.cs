@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.EventInvitationManagement.Queries
 {
-    public class GetEventInvitationByEventIdValidator : AbstractValidator<GetEventInvitationByEventIdQuery>
+    public class GetEventInvitationByIdValidator : AbstractValidator<GetEventInvitationByIdQuery>
     {
-        public GetEventInvitationByEventIdValidator()
+        public GetEventInvitationByIdValidator()
         {
-            RuleFor(x => x.EventId).GreaterThan(0);
+            RuleFor(x => x.Id).GreaterThan(0);
 
         }
     }
 
 
-    public class GetEventInvitationByEventIdQuery : IRequest<IEnumerable<EventInvitationResponse>>
+    public class GetEventInvitationByIdQuery : IRequest<EventInvitationResponse>
     {
-        public int EventId { get; set; }
+        public int Id { get; set; }
     }
 }

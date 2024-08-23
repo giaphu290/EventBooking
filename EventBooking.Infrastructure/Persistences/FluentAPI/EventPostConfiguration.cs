@@ -17,19 +17,17 @@ namespace EventBooking.Infrastructure.Persistences.FluentAPI
             builder.ToTable("EventPost");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.EventId).IsRequired();
-            builder.Property(e => e.UserId).IsRequired();   
             builder.Property(e => e.Content).HasMaxLength(400);
-            builder.Property(e => e.CreatedAt).IsRequired();
-            builder
-            .HasOne(ut => ut.User)
-            .WithMany(u => u.EventPosts)
-            .HasForeignKey(ut => ut.UserId)
-            .OnDelete(DeleteBehavior.NoAction);
             builder
             .HasOne(ut => ut.Event)
             .WithMany(u => u.EventPosts)
             .HasForeignKey(ut => ut.EventId)
             .OnDelete(DeleteBehavior.NoAction);
+            builder
+           .HasOne(ut => ut.User)
+           .WithMany(u => u.EventPosts)
+           .HasForeignKey(ut => ut.OwnerId)
+           .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace EventBooking.Application.Common.Persistences.IRepositories
 {
     public interface IGroupRepository : IBaseRepository<Group>
     {
+        Task<IEnumerable<Group>> GetGroupsByNameAsync(string name);
     }
 }

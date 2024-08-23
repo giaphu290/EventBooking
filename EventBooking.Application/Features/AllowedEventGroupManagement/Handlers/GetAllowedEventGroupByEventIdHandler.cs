@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.AllowedEventGroupManagement.Handlers
 {
-    internal class GetAllAllowedEventGroupByEventIdHandler
+    internal class GetAllowedEventGroupByEventIdHandler
     {
     }
 }

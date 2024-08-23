@@ -5,6 +5,13 @@ using EventBooking.Application.Features.Auth.UserManage.Commands;
 using EventBooking.Application.Features.Auth.UserManage.Models;
 using EventBooking.Application.Features.EventManagement.Commands;
 using EventBooking.Application.Features.EventManagement.Models;
+using EventBooking.Application.Features.GroupManagement.Commands;
+using EventBooking.Application.Features.GroupManagement.Models;
+using EventBooking.Application.Features.GroupUserManagement.Commands;
+using EventBooking.Application.Features.GroupUserManagement.Models;
+using EventBooking.Application.Features.PostManagement.Commands;
+using EventBooking.Application.Features.PostManagement.Models;
+using EventBooking.Application.Features.TicketManagement.Models;
 using EventBooking.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -31,6 +38,23 @@ namespace EventBooking.Application.Common.Mapping
             CreateMap<Event, CreateEventCommand>().ReverseMap();
             CreateMap<Event, EventResponse>().ReverseMap();
             CreateMap<Event, UpdateEventCommand>().ReverseMap();
+            // Group
+            CreateMap<Group, CreateGroupCommand>().ReverseMap();
+            CreateMap<Group, GroupResponse>().ReverseMap();
+            CreateMap<Group, UpdateGroupCommand>().ReverseMap();
+            // Group User
+            CreateMap<GroupUser, CreateGroupUserCommand>().ReverseMap();
+            CreateMap<GroupUser, GroupUserResponse>().ReverseMap();
+            CreateMap<GroupUser, UpdateGroupUserCommand>().ReverseMap();
+            // EventTIcket
+            CreateMap<EventTicket, CreateEventTicketCommand>().ReverseMap();
+            CreateMap<EventTicket, EventTicketResponse>().ReverseMap();
+            CreateMap<EventTicket, UpdateEventTicketCommand>().ReverseMap();
+            // EventTIcket
+            CreateMap<EventPost, CreateEventPostCommand>().ReverseMap();
+            CreateMap<EventPost, EventPostResponse>().ReverseMap();
+            CreateMap<EventPost, UpdateEventPostCommand>().ReverseMap();
+
 
 
         }

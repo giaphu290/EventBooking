@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.EventInvitationManagement.Models
 {
-    internal class EventInvitationResponse
+    public class EventInvitationResponse
     {
     }
 }

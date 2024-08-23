@@ -10,5 +10,7 @@ namespace EventBooking.Application.Common.Persistences.IRepositories
 {
     public interface IGroupUserRepository : IBaseRepository<GroupUser>
     {
+        Task<IEnumerable<GroupUser>> GetGroupUserByGroupIdAsync(int groupId);
+        Task<IEnumerable<GroupUser>> GetGroupUserByUserIdAsync(string userId);
     }
 }

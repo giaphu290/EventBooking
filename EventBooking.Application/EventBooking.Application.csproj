@@ -20,15 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AllowedEventGroupManagement\Handlers\" />
     <Folder Include="Features\Auth\PasswordManage\Models\" />
     <Folder Include="Features\Auth\PasswordManage\Queries\" />
     <Folder Include="Features\Auth\UserManage\Queries\" />
     <Folder Include="Features\CommunicationManagement\" />
-    <Folder Include="Features\EventInvitationManagement\Handlers\" />
-    <Folder Include="Features\GroupUserManagement\Handlers\" />
-    <Folder Include="Features\PostManagement\Handlers\" />
-    <Folder Include="Features\TicketManagement\Handlers\" />
   </ItemGroup>
 
 </Project>

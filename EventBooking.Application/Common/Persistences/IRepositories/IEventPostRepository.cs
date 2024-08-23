@@ -11,5 +11,7 @@ namespace EventBooking.Application.Common.Persistences.IRepositories
 {
     public interface IEventPostRepository : IBaseRepository<EventPost>
     {
+        Task<IEnumerable<EventPost>> GetEventPostsByEventIdAsync(int id);
+
     }
 }
