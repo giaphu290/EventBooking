@@ -65,6 +65,6 @@ namespace EventBooking.Application.Features.EventManagement.Commands
         public bool? IsPrivate { get; set; }
         public EventStatus? Status { get; set; }
         public int? Capacity { get; set; }
-        public string HostId { get; set; }
+        public string? HostId { get; set; }
     }
 }

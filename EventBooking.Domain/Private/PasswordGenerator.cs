@@ -9,7 +9,7 @@ namespace EventBooking.Domain.Private
 {
     public static class PasswordGenerator
     {
-        private static readonly Random Random = new Random();
+        private static readonly Random Random = new();
         private static string? Uppercase;
         private static string? Lowercase;
         private static string? Digits;

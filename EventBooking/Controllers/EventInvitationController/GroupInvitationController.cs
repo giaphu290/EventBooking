@@ -38,7 +38,7 @@ namespace EventBooking.API.Controllers.EventInvitationController
                 data: response));
         }
         /// <summary>
-        /// Cập nhật lời mời nhóm về sự kiện .
+        /// Cập nhật lời mời nhóm về sự kiện.
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>

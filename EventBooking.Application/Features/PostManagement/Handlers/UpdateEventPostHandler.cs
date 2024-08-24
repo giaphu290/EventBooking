@@ -43,19 +43,14 @@ namespace EventBooking.Application.Features.PostManagement.Handlers
                 {
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "bài viết không tồn tại");
                 }
-                if (request.EventId.HasValue)
+
+                var existingEvent = await _unitOfWork.EventRepository.GetByIdAsync(request.EventId)
+                    ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy sự kiện");
+
+                if (existingEvent.IsDelete || !existingEvent.IsActive)
                 {
-                    var existingEvent = await _unitOfWork.EventRepository.GetByIdAsync(request.EventId)
-     ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy sự kiện");
-
-                    if (existingEvent.IsDelete || !existingEvent.IsActive)
-                    {
-                        throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Sự kiện không tồn tại");
-                    }
+                    throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Sự kiện không tồn tại");
                 }
-     
-
-                // Validate the host role
                 _mapper.Map(request, existingPost);
                 existingPost.LastUpdatedBy = currentUserId;
                 existingPost.LastUpdatedTime = _timeService.SystemTimeNow;

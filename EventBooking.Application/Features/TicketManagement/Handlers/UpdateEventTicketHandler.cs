@@ -43,34 +43,27 @@ namespace EventBooking.Application.Features.TicketManagement.Handlers
                 {
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Vé không tồn tại");
                 }
-                if (request.EventId.HasValue)
+                var events = await _unitOfWork.EventRepository.GetByIdAsync(request.EventId)
+                ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy sự kiện");
+
+                if (events.IsDelete || !events.IsActive)
                 {
-                    var existingEvent = await _unitOfWork.EventRepository.GetByIdAsync(request.EventId)
-                    ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy sự kiện");
-
-                    if (existingEvent.IsDelete || !existingEvent.IsActive)
-                    {
-                        throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Sự kiện không tồn tại");
-                    }
+                    throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Sự kiện không tồn tại");
                 }
-                 if (!request.UserId.IsNullOrEmpty())
-                    {
-                        var existingUser = await _unitOfWork.UserRepository.GetByIdAsync(request.UserId)
-                        ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy người dùng");
 
-                        if (existingUser.IsDelete || !existingUser.IsActive)
-                        {
-                            throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Người dùng không tồn tại");
-                        }
-                    }
-                
+                var users = await _unitOfWork.UserRepository.GetByIdAsync(request.UserId)
+                ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy người dùng");
 
+                if (users.IsDelete || !users.IsActive)
+                {
+                    throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Người dùng không tồn tại");
+                }
+                if (request.IsPaid == true) 
+                {
+                    request.PurchaseDate = _timeService.SystemTimeNow.DateTime;
+                }
                 // Validate the host role
                 _mapper.Map(request, existingTicket);
-                if(existingTicket.IsPaid == true)
-                {
-                    existingTicket.PurchaseDate = _timeService.SystemTimeNow.DateTime;
-                }    
                 existingTicket.LastUpdatedBy = currentUserId;
                 existingTicket.LastUpdatedTime = _timeService.SystemTimeNow;
 

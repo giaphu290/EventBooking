@@ -82,10 +82,10 @@ namespace EventBooking.Application.Features.Auth.LoginManage.Handlers
 
                 var claims = new List<Claim>
                 {
-                    new Claim("Id", userId),
-                    new Claim(ClaimTypes.Role, role),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim("isRefreshToken", "false")
+                    new("Id", userId),
+                    new(ClaimTypes.Role, role),
+                    new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new("isRefreshToken", "false")
                 };
                 var token = new JwtSecurityToken(
                     issuer: _configuration["Jwt:Issuer"],

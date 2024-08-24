@@ -45,27 +45,20 @@ namespace EventBooking.Application.Features.GroupUserManagement.Handlers
                 {
                     throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Group User không tồn tại");
                 }
-                if (request.GroupId.HasValue)
+
+                var groups = await _unitOfWork.GroupRepository.GetByIdAsync(request.GroupId)
+                 ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy Group User");
+                if (groups.IsDelete || !groups.IsActive)
                 {
-                    var groups = await _unitOfWork.GroupRepository.GetByIdAsync(request.GroupId.Value)
-                     ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy Group User");
-                    if (groups.IsDelete || !groups.IsActive)
-                    {
-                        throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Group User không tồn tại");
-                    }
-                }
-                if (!request.UserId.IsNullOrEmpty())
-                {
-                    var users = await _unitOfWork.GroupRepository.GetByIdAsync(request.UserId)
-                     ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy Group User");
-                    if (users.IsDelete || !users.IsActive)
-                    {
-                        throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Group User không tồn tại");
-                    }
+                    throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Group User không tồn tại");
                 }
 
-
-                // Validate the host role
+                var users = await _unitOfWork.GroupRepository.GetByIdAsync(request.UserId)
+                 ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy Group User");
+                if (users.IsDelete || !users.IsActive)
+                {
+                    throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Group User không tồn tại");
+                }
                 _mapper.Map(request, existingGroupUser);
                 existingGroupUser.LastUpdatedBy = currentUserId;
                 existingGroupUser.LastUpdatedTime = _timeService.SystemTimeNow;

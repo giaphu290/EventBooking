@@ -37,23 +37,28 @@ namespace EventBooking.Application.Common.Mapping
             // Event
             CreateMap<Event, CreateEventCommand>().ReverseMap();
             CreateMap<Event, EventResponse>().ReverseMap();
-            CreateMap<Event, UpdateEventCommand>().ReverseMap();
+            CreateMap<Event, UpdateEventCommand>().ReverseMap()
+                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             // Group
             CreateMap<Group, CreateGroupCommand>().ReverseMap();
             CreateMap<Group, GroupResponse>().ReverseMap();
-            CreateMap<Group, UpdateGroupCommand>().ReverseMap();
+            CreateMap<Group, UpdateGroupCommand>().ReverseMap()
+                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             // Group User
             CreateMap<GroupUser, CreateGroupUserCommand>().ReverseMap();
             CreateMap<GroupUser, GroupUserResponse>().ReverseMap();
-            CreateMap<GroupUser, UpdateGroupUserCommand>().ReverseMap();
+            CreateMap<GroupUser, UpdateGroupUserCommand>().ReverseMap()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             // EventTIcket
             CreateMap<EventTicket, CreateEventTicketCommand>().ReverseMap();
             CreateMap<EventTicket, EventTicketResponse>().ReverseMap();
-            CreateMap<EventTicket, UpdateEventTicketCommand>().ReverseMap();
+            CreateMap<EventTicket, UpdateEventTicketCommand>().ReverseMap()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             // EventTIcket
             CreateMap<EventPost, CreateEventPostCommand>().ReverseMap();
             CreateMap<EventPost, EventPostResponse>().ReverseMap();
-            CreateMap<EventPost, UpdateEventPostCommand>().ReverseMap();
+            CreateMap<EventPost, UpdateEventPostCommand>().ReverseMap()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
 
 

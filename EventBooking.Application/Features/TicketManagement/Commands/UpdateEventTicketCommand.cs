@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.TicketManagement.Commands
@@ -37,6 +38,8 @@ public class UpdateEventTicketCommand : IRequest<EventTicketResponse>
     public int Id { get; set; }
     public int? EventId { get; set; }
     public string? UserId { get; set; }
+    [JsonIgnore]
+    public DateTime? PurchaseDate { get; set; }
     public bool? IsPaid { get; set; }
 }
 

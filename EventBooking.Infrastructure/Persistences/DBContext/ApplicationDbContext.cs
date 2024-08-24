@@ -20,7 +20,7 @@ namespace EventBooking.Infrastructure.Persistences.DBContext
         {
             base.OnConfiguring(optionsBuilder);
         }
-        public DbSet<User> Users => Set<User>();
+        public new DbSet<User> Users => Set<User>();
         public DbSet<AllowedEventGroup> AllowedEvents { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventInvitation> EventInvitations {get;set;}

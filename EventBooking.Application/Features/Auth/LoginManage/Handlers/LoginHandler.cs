@@ -45,12 +45,8 @@ namespace EventBooking.Application.Features.Auth.LoginManage.Handlers
                     throw new ErrorException(StatusCodes.Status401Unauthorized, ResponseCodeConstants.UNAUTHENTICATED, "Tên đăng nhập hoặc mật khẩu không đúng");
                 }
 
-                var roles = await _userManager.GetRolesAsync(user);
-                var userRole = roles.FirstOrDefault();
-                if (userRole == null)
-                {
-                    throw new ErrorException(StatusCodes.Status403Forbidden, ResponseCodeConstants.UNAUTHORIZED, "Nguời dùng chưa được cấp quyền");
-                }
+                var userRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
+                         ?? throw new ErrorException(StatusCodes.Status403Forbidden, ResponseCodeConstants.UNAUTHORIZED, "Nguời dùng chưa được cấp quyền");
 
                 // Generate access token
                 var accessToken = GenerateToken(user.Id, userRole, false);
@@ -96,10 +92,10 @@ namespace EventBooking.Application.Features.Auth.LoginManage.Handlers
 
                 var claims = new List<Claim>
                 {
-                    new Claim("Id", userId),
-                    new Claim(ClaimTypes.NameIdentifier, userId),
-                    new Claim(ClaimTypes.Role, role),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                    new("Id", userId),
+                    new(ClaimTypes.NameIdentifier, userId),
+                    new(ClaimTypes.Role, role),
+                    new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
                 if (isRefreshToken)

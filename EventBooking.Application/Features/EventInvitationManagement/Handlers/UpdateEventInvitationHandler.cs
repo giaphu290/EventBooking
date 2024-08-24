@@ -51,7 +51,7 @@ namespace EventBooking.Application.Features.EventInvitationManagement.Handlers
                 {
                     throw new ErrorException(StatusCodes.Status400BadRequest, ResponseCodeConstants.BADREQUEST, "Người dùng đã bị xoá hoặc không tìm thấy");
                 }
-                if(request.ResponseType !=null)
+                if(request.ResponseType != eventInvitations.ResponseType)
                 {
                     request.ResponseDate = _timeService.SystemTimeNow.DateTime;
                 }    
