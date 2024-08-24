@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EventBooking.API.Controllers.Middlewares
+namespace EventBooking.API.Middlewares
 {
     public class ValidationMiddleware
     {

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.EventInvitationManagement.Commands
@@ -31,11 +32,6 @@ namespace EventBooking.Application.Features.EventInvitationManagement.Commands
             RuleFor(a => a.TextResponse)
                 .MaximumLength(500).WithMessage("TextResponse must not exceed 500 characters.")
                 .When(a => !string.IsNullOrEmpty(a.TextResponse));
-
-            RuleFor(a => a.ResponseDate)
-                .LessThanOrEqualTo(DateTime.UtcNow).WithMessage("ResponseDate cannot be in the future.")
-                .When(a => a.ResponseDate.HasValue);
-
             RuleFor(a => a.ResponseType)
                 .IsInEnum().WithMessage("ResponseType must be a valid enum value.")
                 .When(a => a.ResponseType.HasValue);
@@ -48,6 +44,7 @@ namespace EventBooking.Application.Features.EventInvitationManagement.Commands
         public int? EventId { get; set; }
         public string? UserId { get; set; }
         public string? TextResponse { get; set; }
+        [JsonIgnore]
         public DateTime? ResponseDate { get; set; }
         public InvitationResponseType? ResponseType { get; set; }
     }

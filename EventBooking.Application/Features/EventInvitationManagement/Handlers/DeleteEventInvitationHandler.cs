@@ -37,7 +37,6 @@ namespace EventBooking.Application.Features.EventInvitationManagement.Handlers
                 }
 
                 string currentUserId = _userContextService.GetCurrentUserId();
-
                 existEvent.DeletedBy = currentUserId;
                 existEvent.DeletedTime = _timeService.SystemTimeNow;
                 existEvent.IsActive = false;

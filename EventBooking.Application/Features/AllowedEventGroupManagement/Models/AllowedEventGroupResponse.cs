@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventBooking.Application.Features.AllowedEventGroupManagement.Models
 {
-    internal class AllowedEventGroupResponse
+    public class AllowedEventGroupResponse
     {
+        public int EventId { get; set; }
+        public int GroupId { get; set; }
     }
 }

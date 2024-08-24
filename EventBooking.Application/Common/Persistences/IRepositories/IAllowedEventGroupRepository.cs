@@ -10,5 +10,10 @@ namespace EventBooking.Application.Common.Persistences.IRepositories
 {
     public interface IAllowedEventGroupRepository : IBaseRepository<AllowedEventGroup>
     {
+
+        Task<bool> CheckInvitation(int eventId, int groupId);
+        Task<IEnumerable<AllowedEventGroup>> GetAllowedEventGroupsByEventIdAsync(int id);
+        Task<IEnumerable<AllowedEventGroup>> GetAllowedEventGroupsByGroupIdAsync(int id);
+
     }
 }

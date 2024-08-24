@@ -4,6 +4,7 @@ using EventBooking.Domain.Entities;
 using EventBooking.Domain.Private;
 using EventBooking.Infrastructure.Persistences.DBContext;
 using EventBooking.Infrastructure.Persistences.Repositories;
+using EventBooking.Infrastructure.Persistences.SeedData;
 using EventBooking.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -31,7 +32,7 @@ namespace EventBooking.Infrastructure
             services.AddIdentityCore<User>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>(); // Đăng ký Identity và Entity Framework
-
+            services.AddScoped<ApplicationDbContextInitialiser>();
             services.AddIdentityCore<User>(options =>
             {
                 options.Password.RequireDigit = true; // Mật khẩu phải chứa ít nhất một ký tự số
