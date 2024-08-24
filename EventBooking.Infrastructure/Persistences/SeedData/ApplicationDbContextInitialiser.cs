@@ -91,11 +91,11 @@ namespace EventBooking.Infrastructure.Persistences.SeedData
         private async Task SeedUsersAsync()
         {
             var users = new[]
-            {
-                new { UserName = "admin", Email = "admin@example.com", Role = "Admin", Password = "Admin12345" },
-                new { UserName = "host", Email = "host@example.com", Role = "Host", Password = "Host12345" },
-                new { UserName = "guest", Email = "guest@example.com", Role = "Guest", Password = "Guest12345" }
-            };
+     {
+        new { UserName = "admin", Email = "admin@example.com", Role = "Admin", Password = "Admin12345" },
+        new { UserName = "host", Email = "host@example.com", Role = "Host", Password = "Host12345" },
+        new { UserName = "guest", Email = "guest@example.com", Role = "Guest", Password = "Guest12345" }
+    };
 
             foreach (var userInfo in users)
             {
@@ -104,28 +104,28 @@ namespace EventBooking.Infrastructure.Persistences.SeedData
                     var user = new User
                     {
                         Name = userInfo.UserName,
+                        UserName = userInfo.UserName,
                         Email = userInfo.Email,
-                        EmailConfirmed = true,
+                        EmailConfirmed = true
                     };
 
                     var result = await _userManager.CreateAsync(user, userInfo.Password);
 
                     if (result.Succeeded)
                     {
+                        _logger.LogInformation($"User {userInfo.UserName} created successfully.");
                         await _userManager.AddToRoleAsync(user, userInfo.Role);
-
-                        // Create a UserProfile for the new user
-                        var userProfile = new User
-                        {
-                            Name = userInfo.UserName == "admin" ? "Admin User" : "Customer User",
-                            Bio = "Example User",
-                            CreatedBy = "System",
-                            CreatedTime = DateTimeOffset.UtcNow
-                        };
-
-                        _context.Users.Add(userProfile);
                         await _context.SaveChangesAsync();
+                        _logger.LogInformation($"UserProfile for {userInfo.UserName} added to database.");
                     }
+                    else
+                    {
+                        _logger.LogError($"Failed to create user {userInfo.UserName}: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                    }
+                }
+                else
+                {
+                    _logger.LogInformation($"User {userInfo.UserName} already exists.");
                 }
             }
         }
