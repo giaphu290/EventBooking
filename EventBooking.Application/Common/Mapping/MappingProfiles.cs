@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using EventBooking.Application.Features.AllowedEventGroupManagement.Commands;
+using EventBooking.Application.Features.AllowedEventGroupManagement.Models;
 using EventBooking.Application.Features.Auth.LoginManage.Models;
 using EventBooking.Application.Features.Auth.RoleManage.Models;
 using EventBooking.Application.Features.Auth.UserManage.Commands;
 using EventBooking.Application.Features.Auth.UserManage.Models;
+using EventBooking.Application.Features.EventInvitationManagement.Commands;
+using EventBooking.Application.Features.EventInvitationManagement.Models;
 using EventBooking.Application.Features.EventManagement.Commands;
 using EventBooking.Application.Features.EventManagement.Models;
 using EventBooking.Application.Features.GroupManagement.Commands;
@@ -49,16 +53,27 @@ namespace EventBooking.Application.Common.Mapping
             CreateMap<GroupUser, GroupUserResponse>().ReverseMap();
             CreateMap<GroupUser, UpdateGroupUserCommand>().ReverseMap()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            // EventTIcket
+            // EventTicket
             CreateMap<EventTicket, CreateEventTicketCommand>().ReverseMap();
             CreateMap<EventTicket, EventTicketResponse>().ReverseMap();
             CreateMap<EventTicket, UpdateEventTicketCommand>().ReverseMap()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            // EventTIcket
+            // EventPost
             CreateMap<EventPost, CreateEventPostCommand>().ReverseMap();
             CreateMap<EventPost, EventPostResponse>().ReverseMap();
             CreateMap<EventPost, UpdateEventPostCommand>().ReverseMap()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            //EventInvitation
+            CreateMap<EventInvitation, CreateEventInvitationCommand>().ReverseMap();
+            CreateMap<EventInvitation, EventInvitationResponse>().ReverseMap();
+            CreateMap<EventInvitation, UpdateEventInvitationCommand>().ReverseMap()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            //AllowedEventGroup
+            CreateMap<AllowedEventGroup, CreateAllowedEventGroupCommand>().ReverseMap();
+            CreateMap<AllowedEventGroup, AllowedEventGroupResponse>().ReverseMap();
+            CreateMap<AllowedEventGroup, UpdateAllowedEventGroupCommand>().ReverseMap()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
 
 
 
