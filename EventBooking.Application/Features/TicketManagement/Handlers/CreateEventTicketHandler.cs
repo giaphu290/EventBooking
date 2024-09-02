@@ -46,6 +46,11 @@ namespace EventBooking.Application.Features.TicketManagement.Handlers
                 {
                     throw new ErrorException(StatusCodes.Status400BadRequest, ResponseCodeConstants.BADREQUEST, "Sự kiện đã bị xoá hoặc không tìm thấy");
                 }
+                if(events.RegistrationEndDate  <  _timeService.SystemTimeNow)
+                {
+                    throw new ErrorException(StatusCodes.Status400BadRequest, ResponseCodeConstants.FAILED, "Đã ngừng bán vé");
+
+                }
                 var users = await _unitOfWork.UserRepository.GetByIdAsync(request.UserId)
                     ?? throw new ErrorException(StatusCodes.Status404NotFound, ResponseCodeConstants.NOT_FOUND, "Không tìm thấy người mua vé");
                 if (users.IsDelete || !users.IsActive)

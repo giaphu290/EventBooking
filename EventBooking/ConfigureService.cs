@@ -1,4 +1,5 @@
-﻿using EventBooking.Infrastructure.Services;
+﻿using EventBooking.Application.Common.Services.Interfaces;
+using EventBooking.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -22,6 +23,7 @@ namespace EventBooking.API
             services.ConfigCors();
             services.ConfigSwagger();
             services.AddAuthenJwt(configuration);
+            
             //services.RabbitMq(configuration);
             //services.Quartz();
 
@@ -98,6 +100,13 @@ namespace EventBooking.API
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = true;
                 options.Events = new JwtBearerEvents();
+            })
+            .AddGoogle(googleOptions =>
+            {
+               
+                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+                googleOptions.CallbackPath = "/api/Auth/signin-google";
             });
         }
 

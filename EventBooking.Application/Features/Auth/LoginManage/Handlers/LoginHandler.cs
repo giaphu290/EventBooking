@@ -65,7 +65,7 @@ namespace EventBooking.Application.Features.Auth.LoginManage.Handlers
                     VerificationToken = accessToken,
                     ResetToken = refreshToken,
                     UserId = user.Id,
-                    Username = user.UserName,
+                    Name = user.UserName,
                     Email = user.Email,
                     Role = userRole
                 };
