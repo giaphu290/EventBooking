@@ -14,18 +14,14 @@ namespace EventBooking.API
         public static IServiceCollection ConfigureApiServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers()
-                // Chuyển mọi enum thành json
                  .AddJsonOptions(options =>
                  {
                      options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                  });
-            //services.AddScoped<IEmailService, EmailService>();
             services.ConfigCors();
             services.ConfigSwagger();
             services.AddAuthenJwt(configuration);
             
-            //services.RabbitMq(configuration);
-            //services.Quartz();
 
             return services;
         }
@@ -100,13 +96,6 @@ namespace EventBooking.API
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = true;
                 options.Events = new JwtBearerEvents();
-            })
-            .AddGoogle(googleOptions =>
-            {
-               
-                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-                googleOptions.CallbackPath = "/api/Auth/signin-google";
             });
         }
 
@@ -123,11 +112,7 @@ namespace EventBooking.API
                     });
             });
         }
-        //public static void Quartz(this IServiceCollection services)
-        //{
-        //    services.AddSingleton<NotificationConsumer>();
-        //    services.AddHostedService<NotificationConsumerService>();
-        //}
+
     }
 }
 

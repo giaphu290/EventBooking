@@ -55,20 +55,6 @@ namespace EventBooking.API.Controllers.Authentication
                 ResponseCodeConstants.SUCCESS,
                 response));
         }
-        /// <summary>
-        /// Đăng nhập bằng google.
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost("signin-google")]
-        public async Task<IActionResult> LoginGoole([FromBody] LoginGoogleCommand request)
-        {
-            var response = await _mediatorService.Send(request);
-            return Ok(new BaseResponseModel<LoginResponse>(
-                StatusCodes.Status201Created,
-                ResponseCodeConstants.SUCCESS,
-                response));
-        }
 
         /// <summary>
         /// Đăng ký

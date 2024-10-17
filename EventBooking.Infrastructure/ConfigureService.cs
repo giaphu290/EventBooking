@@ -27,36 +27,23 @@ namespace EventBooking.Infrastructure
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<INormalizeVietnamese, NormalizeVietnameseService>();
-            //services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IMediatorService, MediatorService>();
             services.AddIdentityCore<User>()
                     .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>(); // Đăng ký Identity và Entity Framework
+                    .AddEntityFrameworkStores<ApplicationDbContext>(); 
             services.AddScoped<ApplicationDbContextInitialiser>();
             services.AddIdentityCore<User>(options =>
             {
-                options.Password.RequireDigit = true; // Mật khẩu phải chứa ít nhất một ký tự số
-                options.Password.RequireLowercase = true; // Mật khẩu phải chứa ít nhất một ký tự chữ thường
-                options.Password.RequireNonAlphanumeric = false; // Không yêu cầu ký tự không phải là chữ hoặc số
-                options.Password.RequireUppercase = true; // Mật khẩu phải chứa ít nhất một ký tự chữ hoa
-                options.Password.RequiredLength = 6; // Độ dài tối thiểu của mật khẩu
-                options.Password.RequiredUniqueChars = 1; // Số lượng ký tự khác nhau tối thiểu trong mật khẩu
+                options.Password.RequireDigit = true; 
+                options.Password.RequireLowercase = true; 
+                options.Password.RequireNonAlphanumeric = false; 
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6; 
+                options.Password.RequiredUniqueChars = 1; 
             })
             .AddEntityFrameworkStores<ApplicationDbContext>();
             PasswordGenerator.Initialize(configuration);
-                   
-
-            //Quartz
-            //services.AddQuartz(options =>
-            //{
-            //    options.UseMicrosoftDependencyInjectionJobFactory();
-            //});
-            //services.AddQuartzHostedService(options =>
-            //{
-            //    options.WaitForJobsToComplete = true;
-            //});
-            //services.ConfigureOptions<QuartzSetup>();
-
+                  
             return services;
         }
     }
